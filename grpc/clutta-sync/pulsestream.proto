@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package clutta_sync_grpc;
+
+option go_package = "github.com/sefastech/clutta/libraries/golang/grpc/clutta-sync";
+
+// Enum for representing pulse status
+enum PulseStatus {
+  UNKNOWN = 0;  // Default value, used when status is not set
+  SUCCESS = 1;
+  FAILURE = 2;
+}
+
+message Pulse {
+  string uuid = 1;
+  string chain_id = 2;
+  string signature_id = 3;
+  string correlation_id = 4;
+  string source_id = 5;
+  PulseStatus status = 6;
+  string status_description = 7;
+  int64 created_at = 8;
+  int64 received_at = 9;
+}
+
+// Defining the service
+service PulseStreamService {
+  rpc SendPulse(stream Pulse) returns (StreamStatus);
+}
+
+// Response message for SendEvent
+message StreamStatus {
+  bool success = 1;
+  string message = 2;
+}
