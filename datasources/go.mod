@@ -1,4 +1,4 @@
-module github.com/sefastech/clutta/libraries/golang/datasources
+module github.com/sefastech/clutta-go/datasources
 
 go 1.22.1
 
