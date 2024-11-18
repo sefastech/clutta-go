@@ -1,4 +1,4 @@
-module github.com/sefastech/clutta/libraries/golang/logging
+module github.com/sefastech/clutta-go/logging
 
 go 1.22.1
 
