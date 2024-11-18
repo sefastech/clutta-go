@@ -35,9 +35,9 @@ jobs:
       
       - name: Get latest go tag
         run: |
-          current_tag=$(git tag -l 'clutta-go-v*' | sort -V | tail -n 1)
+          current_tag=$(git tag -l 'v*' | sort -V | tail -n 1)
           if [ -z "$current_tag" ]; then
-            current_tag="clutta-go-v0.0.0"
+            current_tag="v0.0.0"
           fi
           echo "CURRENT_TAG=$current_tag" >> $GITHUB_ENV
       
@@ -46,7 +46,7 @@ jobs:
 
       - name: Increment version
         run: |
-          current_tag=${CURRENT_TAG#learn-go-v}  # Strip "learn-go-v" from the tag
+          current_tag=${CURRENT_TAG#v}  # Strip "v" from the tag
           IFS='.' read -r major minor patch <<< "$current_tag"
 
           case "${{ github.event.inputs.versionType}}" in
@@ -70,23 +70,23 @@ jobs:
       - name: Echo the new version
         run: echo "The new version is ${{ env.NEW_VERSION }}"
 
-      - name: Create new tag
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git tag -a ${{ env.NEW_VERSION }} -m "Latest release ${{ env.NEW_VERSION }} for ${{ github.event.inputs.language }}"
-          git push origin ${{ env.NEW_VERSION }}
+      # - name: Create new tag
+      #   run: |
+      #     git config user.name "GitHub Actions"
+      #     git config user.email "actions@github.com"
+      #     git tag -a ${{ env.NEW_VERSION }} -m "Latest release ${{ env.NEW_VERSION }} for ${{ github.event.inputs.language }}"
+      #     git push origin ${{ env.NEW_VERSION }}
       
-      - name: Create GitHub release
-        if: success()
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ env.NEW_VERSION }}  
-          release_name: Release ${{ env.NEW_VERSION }}
-          body: |
-            ## Changes
-            - Release of ${{ env.NEW_VERSION }}
-          draft: false
-          prerelease: false
+      # - name: Create GitHub release
+      #   if: success()
+      #   uses: actions/create-release@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     tag_name: ${{ env.NEW_VERSION }}  
+      #     release_name: Release ${{ env.NEW_VERSION }}
+      #     body: |
+      #       ## Changes
+      #       - Release of ${{ env.NEW_VERSION }}
+      #     draft: false
+      #     prerelease: false
