@@ -9,7 +9,7 @@ import (
 
 // getInstalledVersion retrieves the version of the installed CLI tool.
 func getInstalledVersion(cliPath string, ops SystemOps) (string, error) {
-	cmd := ops.Command(cliPath, "version")
+	cmd := ops.Command(cliPath, "--version")
 	output, err := cmd.Output()
 	if err != nil {
 		return "", fmt.Errorf("failed to get installed version: %w", err)
