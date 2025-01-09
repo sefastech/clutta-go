@@ -26,6 +26,11 @@ export CLUTTA_AUTO_UPDATE=true
 > Note: Enabling this feature ensures you stay up to date with the latest improvements, bug fixes, 
 > and enhancements. However, you can disable it by setting the variable to false or not setting it at all.
 
+## Features
+- **Effortless Integration**: Simple setup with reusable client initialization.
+- **Single Pulse Support**: Send individual data points with precision.
+- **Batch Processing**: Transmit multiple data points efficiently in one operation.
+- **Automatic Updates**: Ensure you always have the latest tools with the CLUTTA_AUTO_UPDATE environment variable.
 
 # Getting Started
 
