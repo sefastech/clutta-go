@@ -1,6 +1,7 @@
-# Clutta-Go
+# Clutta-Go SDK
 
-Clutta-Go is the official Go SDK for interacting with Clutta, a platform for observability and monitoring. Use this SDK to send pulse data, either individually or in batches, with ease and reliability.
+Clutta-Go is the official Go SDK for interacting with Clutta, a platform for observability and monitoring. 
+Use this SDK to send pulse data, either individually or in batches, with ease and reliability.
 
 ---
 
@@ -8,11 +9,26 @@ Clutta-Go is the official Go SDK for interacting with Clutta, a platform for obs
 
 To add Clutta-Go to your Go project, use the following command:
 
-```bash
+```go
 go get github.com/sefastech/clutta-go
 ```
 
+## Environment Variables
+`CLUTTA_AUTO_UPDATE`
+
+The `CLUTTA_AUTO_UPDATE` environment variable enables automatic downloading of the latest Clutta CLI version. 
+When set to true, the SDK will automatically check for and download updates to ensure you're always running the latest version of the CLI.
+
+Example usage:
+```bash
+export CLUTTA_AUTO_UPDATE=true
+```
+> Note: Enabling this feature ensures you stay up to date with the latest improvements, bug fixes, 
+> and enhancements. However, you can disable it by setting the variable to false or not setting it at all.
+
+
 # Getting Started
+
 ## 1. Initialize the Client
    Set up the client once and reuse it across your application. 
 
