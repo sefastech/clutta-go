@@ -3,6 +3,7 @@ package installer
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/sefastech/clutta-go/cli/info"
 	"net/http"
 	"os"
 	"os/exec"

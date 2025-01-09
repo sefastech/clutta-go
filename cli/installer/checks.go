@@ -3,6 +3,7 @@ package installer
 import (
 	"fmt"
 	"os"
+	"regexp"
 	"runtime"
 	"strings"
 )
@@ -15,8 +16,24 @@ func getInstalledVersion(cliPath string, ops SystemOps) (string, error) {
 		return "", fmt.Errorf("failed to get installed version: %w", err)
 	}
 
-	version := strings.TrimSpace(string(output))
-	return version, nil
+	versionString := strings.TrimSpace(string(output))
+	return extractVersion(versionString)
+}
+
+// extractVersion extracts the version string from the input text.
+// Returns the version string if found, otherwise returns an empty string.
+func extractVersion(input string) (string, error) {
+	// Regular expression to match the version
+	re := regexp.MustCompile(`Version:\s*(v[\d.]+)`)
+
+	// Find the match
+	matches := re.FindStringSubmatch(input)
+
+	// Return the captured version if it exists
+	if len(matches) > 1 {
+		return matches[1], nil
+	}
+	return "", fmt.Errorf("version not found in input: %s", input)
 }
 
 // getLatestVersion fetches the latest release version from GitHub.
