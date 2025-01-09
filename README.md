@@ -14,6 +14,7 @@ go get github.com/sefastech/clutta-go
 ```
 
 ## Environment Variables
+
 `CLUTTA_AUTO_UPDATE`
 
 The `CLUTTA_AUTO_UPDATE` environment variable enables automatic downloading of the latest Clutta CLI version. 
@@ -52,7 +53,7 @@ fmt.Println("Clutta-Go client initialized successfully.")
 
 ```
 
-## 2. Sending a Single Pulse
+## 2. Sending a Pulse
    Send an individual pulse for targeted updates.
 ```go
 pulse := map[string]interface{}{
