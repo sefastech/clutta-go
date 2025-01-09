@@ -46,7 +46,7 @@ func (c *client) SendPulse(pulse map[string]any) (string, error) {
 	// Convert the pulse map to a JSON string
 	jsonString, err := json.Marshal(pulse)
 	if err != nil {
-		return "", fmt.Errorf("failed to encode event as JSON: %w", err)
+		return "", fmt.Errorf("failed to encode pulse as JSON: %w", err)
 	}
 
 	// Execute the `send` command with the `--json` flag
@@ -58,7 +58,7 @@ func (c *client) SendPulses(pulses []map[string]any) (string, error) {
 	// Convert the event map to a JSON string
 	jsonString, err := json.Marshal(pulses)
 	if err != nil {
-		return "", fmt.Errorf("failed to encode pulse as JSON: %w", err)
+		return "", fmt.Errorf("failed to encode pulses as JSON: %w", err)
 	}
 
 	// Execute the `send` command with the `--json` flag
