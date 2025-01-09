@@ -42,7 +42,7 @@ export CLUTTA_AUTO_UPDATE=true
 import (
 	"log"
 	"fmt"
-	"yourorg/clutta-go/lib"
+	"sefastech/clutta-go/lib"
 )
 
 client, err := lib.NewClient()
