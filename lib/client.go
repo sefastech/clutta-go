@@ -53,12 +53,12 @@ func (c *client) SendPulse(pulse map[string]any) (string, error) {
 	return c.executor.ExecuteCommand("send pulse", "--json", string(jsonString))
 }
 
-// SendPulses sends multiple events to the CLI tool and returns the results.
+// SendPulses sends multiple pulses to Clutta.
 func (c *client) SendPulses(pulses []map[string]any) (string, error) {
 	// Convert the event map to a JSON string
 	jsonString, err := json.Marshal(pulses)
 	if err != nil {
-		return "", fmt.Errorf("failed to encode event as JSON: %w", err)
+		return "", fmt.Errorf("failed to encode pulse as JSON: %w", err)
 	}
 
 	// Execute the `send` command with the `--json` flag
