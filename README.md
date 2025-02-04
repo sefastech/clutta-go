@@ -45,17 +45,19 @@ import (
 	"github.com/sefastech/clutta-go/lib"
 )
 
-client, err := lib.NewClient()
-if err != nil {
-	log.Fatalf("Failed to create client: %v", err)
+func main() {
+	client, err := lib.NewClient()
+	if err != nil {
+		log.Fatalf("Failed to create client: %v", err)
+	}
+	fmt.Println("Clutta-Go client initialized successfully.")
 }
-fmt.Println("Clutta-Go client initialized successfully.")
-
 ```
 
 ## 2. Sending a Pulse
-   Send an individual pulse for targeted updates.
+   Send an individual pulse for targeted updates. Paste the following also inside the main function above.
 ```go
+
 pulse := map[string]interface{}{
 	"signatureId":       "unique-signature-id",
 	"chainId":           "unique-chain-id",
@@ -77,8 +79,10 @@ fmt.Println("Pulse sent successfully:", response)
 ```
 
 ## 3. Sending Multiple Pulses
-Optimize performance by sending pulses in bulk
+Optimize performance by sending pulses in bulk. Paste the following also inside the main function above.
 ```go
+
+
 pulses := []map[string]interface{}{
 	{
 		"signatureId":       "signature-1",
