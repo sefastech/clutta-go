@@ -50,7 +50,7 @@ func moveToInstallPath(source, destination string, ops SystemOps) error {
 		return os.Rename(source, destination)
 	}
 
-	cmd := exec.Command("sudo", "mv", source, destination)
+	cmd := getMoveBinaryCmd(source, destination)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 
@@ -59,4 +59,17 @@ func moveToInstallPath(source, destination string, ops SystemOps) error {
 	}
 
 	return nil
+}
+
+func getMoveBinaryCmd(source, destination string) *exec.Cmd {
+	// Check if sudo is available
+	_, err := exec.LookPath("sudo")
+	useSudo := err == nil // sudo exists
+
+	// Prepare command
+	cmd := exec.Command("mv", source, destination)
+	if useSudo {
+		cmd = exec.Command("sudo", "mv", source, destination)
+	}
+	return cmd
 }
