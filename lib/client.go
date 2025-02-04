@@ -50,7 +50,7 @@ func (c *client) SendPulse(pulse map[string]any) (string, error) {
 	}
 
 	// Execute the `send` command with the `--json` flag
-	return c.executor.ExecuteCommand("send pulse", "--json", string(jsonString))
+	return c.executor.ExecuteCommand("send pulse", "--json", string(jsonString), "--output", "json")
 }
 
 // SendPulses sends multiple pulses to Clutta.
@@ -62,5 +62,5 @@ func (c *client) SendPulses(pulses []map[string]any) (string, error) {
 	}
 
 	// Execute the `send` command with the `--json` flag
-	return c.executor.ExecuteCommand("send pulses", "--json", string(jsonString))
+	return c.executor.ExecuteCommand("send pulses", "--json", string(jsonString), "--output", "json")
 }
