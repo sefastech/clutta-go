@@ -45,7 +45,7 @@ func (e *executor) ExecuteCommand(command string, args ...string) (string, error
 
 	// Run the command
 	if err := cmd.Run(); err != nil {
-		return "", fmt.Errorf("failed to execute command: %s, error: %w", stderr.String(), err)
+		return "", fmt.Errorf("failed to execute command: %s, error: %v", stderr.String(), err)
 	}
 
 	// Return trimmed stdout
