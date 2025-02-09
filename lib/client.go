@@ -3,11 +3,8 @@ package lib
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/sefastech/clutta-go/cli/checker"
 	"github.com/sefastech/clutta-go/cli/executor"
-	"github.com/sefastech/clutta-go/cli/info"
-	"github.com/sefastech/clutta-go/cli/installer"
-	"path/filepath"
-	"runtime"
 )
 
 // Client provides a high-level API for interacting with the CLI tool.
@@ -21,20 +18,13 @@ type client struct {
 
 // NewClient initializes the CLI client, ensuring the CLI tool is installed and ready to use.
 func NewClient() (Client, error) {
-	// Get default CLI info based on the current OS
-	cliInfo, err := info.DefaultCLIInfo(runtime.GOOS)
-	if err != nil {
-		return nil, fmt.Errorf("unsupported operating system: %w", err)
-	}
 
-	// Ensure the CLI is installed and up to date
-	if err := installer.EnsureCLI(cliInfo); err != nil {
+	if err := checker.EnsureCLI(); err != nil {
 		return nil, fmt.Errorf("failed to ensure CLI tool: %w", err)
 	}
 
 	// Initialize the executor
-	cliPath := filepath.Join(cliInfo.InstallPath, cliInfo.BinaryName)
-	cliExecutor, err := executor.NewExecutor(cliPath)
+	cliExecutor, err := executor.NewExecutor()
 	if err != nil {
 		return nil, fmt.Errorf("failed to create new executor: %w", err)
 	}

@@ -13,20 +13,6 @@ To add Clutta-Go to your Go project, use the following command:
 go get github.com/sefastech/clutta-go
 ```
 
-## Environment Variables
-
-`CLUTTA_AUTO_UPDATE`
-
-The `CLUTTA_AUTO_UPDATE` environment variable enables automatic downloading of the latest Clutta CLI version. 
-When set to true, the SDK will automatically check for and download updates to ensure you're always running the latest version of the CLI.
-
-Example usage:
-```bash
-export CLUTTA_AUTO_UPDATE=true
-```
-> Note: Enabling this feature ensures you stay up to date with the latest improvements, bug fixes, 
-> and enhancements. However, you can disable it by setting the variable to false or not setting it at all.
-
 ## Features
 - **Effortless Integration**: Simple setup with reusable client initialization.
 - **Single Pulse Support**: Send individual data points with precision.
